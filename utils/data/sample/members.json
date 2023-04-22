@@ -1,0 +1,25 @@
+{
+  "members": {
+  "temp": {
+    "name": "temp",
+    "imageUrl": "temp",
+    "role": "temp",
+    "uid": "",
+    "firebaseKey": ""
+  },
+  "temp2": {
+    "name": "temp",
+    "imageUrl": "temp",
+    "role": "temp",
+    "uid": "",
+    "firebaseKey": ""
+  },
+  "temp3": {
+    "name": "temp",
+    "imageUrl": "temp",
+    "role": "temp",
+    "uid": "",
+    "firebaseKey": ""
+  }
+}
+}
