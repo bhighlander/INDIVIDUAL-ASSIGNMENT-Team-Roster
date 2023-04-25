@@ -14,14 +14,14 @@ function Home() {
 
   useEffect(() => {
     getAllMembers();
-  }, []); // may need [] as second argument
+  }, []);
 
   return (
     <div className="text-center my-4">
       <h1>My Team</h1>
       <div className="d-flex flex-wrap justify-content-center">
         {members.map((member) => (
-          <MemberCard key={member.firebasesKey} memberObj={member} onUpdate={getAllMembers} />
+          <MemberCard key={member.firebaseKey} memberObj={member} onUpdate={getAllMembers} />
         ))}
       </div>
     </div>

@@ -15,8 +15,8 @@ function ViewMember() {
   return (
     <div className="text-center my-4">
       <h1>{memberDetails.name}</h1>
-      <h2>{memberDetails.position}</h2>
-      <h3>{memberDetails.role}</h3>
+      <h2>Position: {memberDetails.position}</h2>
+      <h3>Role: {memberDetails.role}</h3>
     </div>
   );
 }

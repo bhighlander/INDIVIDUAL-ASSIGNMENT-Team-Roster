@@ -27,20 +27,22 @@ function MemberForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.firebaseKey) {
-      updateMember(formInput, user.uid).then(router.push(`/member/${obj.firebaseKey}`));
+      updateMember(formInput)
+        .then(() => router.push(`/member/${obj.firebaseKey}`));
     } else {
       const payload = { ...formInput, uid: user.uid };
       createMember(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
-        updateMember(patchPayload, user.uid);
-        router.push(`/member/${name}`);
+        updateMember(patchPayload).then(() => {
+          router.push('/');
+        });
       });
     }
   };
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2 className="mb-4">{obj.firebaseKey ? 'Edit Member' : 'Add Member'} Member</h2>
+      <h2 className="mb-4">{obj.firebaseKey ? 'Edit' : 'Create'} Member</h2>
       <FloatingLabel controlId="floatingInput1" label="Name" className="mb-3">
         <Form.Control
           type="text"
@@ -72,7 +74,7 @@ function MemberForm({ obj }) {
         />
       </FloatingLabel>
       <Button variant="primary" type="submit">
-        {obj.firebaseKey ? 'Update' : 'Create'}Member
+        {obj.firebaseKey ? 'Update' : 'Create'} Member
       </Button>
     </Form>
   );
