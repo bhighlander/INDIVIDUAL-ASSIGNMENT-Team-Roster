@@ -17,7 +17,7 @@ function MemberCard({ memberObj, onUpdate }) {
         <Card.Text>
           {memberObj.role}
         </Card.Text>
-        <Link href={`/member/view/${memberObj.firebaseKey}`} passHref>
+        <Link href={`/member/${memberObj.firebaseKey}`} passHref>
           <Button variant="info">View</Button>
         </Link>
         <Link href={`/member/edit/${memberObj.firebaseKey}`} passHref>

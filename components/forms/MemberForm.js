@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useAuth } from '../../utils/context/authContext';
 import { createMember, updateMember } from '../../api/memberData';
@@ -15,6 +15,12 @@ function MemberForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
   const router = useRouter();
   const { user } = useAuth();
+
+  useEffect(() => {
+    if (obj.firebaseKey) {
+      setFormInput(obj);
+    }
+  }, [obj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
