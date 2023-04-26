@@ -33,31 +33,37 @@ const createMember = (memberObj) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const updateMember = (memberObj) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/members/${memberObj.firebaseKey}.json`, {
+const updateMember = (payload) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/members/${payload.firebaseKey}.json`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(memberObj),
+    body: JSON.stringify(payload),
   })
     .then((response) => response.json())
-    .then((data) => resolve(data))
+    .then(resolve)
     .catch((error) => reject(error));
 });
 
 const deleteMember = (firebaseKey) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/members/${firebaseKey}.json`, {
     method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
   })
     .then((response) => response.json())
-    .then(() => resolve('Successfully Deleted'))
+    .then((data) => resolve(data))
     .catch((error) => reject(error));
 });
 
 const getSingleMember = (firebaseKey) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/members/${firebaseKey}.json`, {
     method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
   })
     .then((response) => response.json())
     .then((data) => resolve(data))

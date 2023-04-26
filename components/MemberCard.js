@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import { Button, Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { deleteMember } from '../api/memberData';
 
 function MemberCard({ memberObj, onUpdate }) {
-  const deleteMember = () => {
+  const deleteThisMember = () => {
     if (window.confirm(`Are you sure you want to delete ${memberObj.name}?`)) {
-      deleteMember(memberObj.firebaseKey).then(onUpdate);
+      deleteMember(memberObj.firebaseKey).then(() => onUpdate());
     }
   };
   return (
@@ -16,13 +17,13 @@ function MemberCard({ memberObj, onUpdate }) {
         <Card.Text>
           {memberObj.role}
         </Card.Text>
-        <Link href={`/member/view/${memberObj.firebaseKey}`} passHref>
+        <Link href={`/member/${memberObj.firebaseKey}`} passHref>
           <Button variant="info">View</Button>
         </Link>
         <Link href={`/member/edit/${memberObj.firebaseKey}`} passHref>
           <Button variant="primary">Edit</Button>
         </Link>
-        <Button variant="danger" onClick={deleteMember}>Delete</Button>
+        <Button variant="danger" onClick={deleteThisMember}>Delete</Button>
       </Card.Body>
     </Card>
   );
