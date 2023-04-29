@@ -9,7 +9,6 @@ const initialState = {
   team_name: '',
   isPublic: false,
   firebaseKey: '',
-  user: '',
 };
 
 function TeamForm({ obj }) {
@@ -21,7 +20,7 @@ function TeamForm({ obj }) {
     if (obj.firebaseKey) {
       setFormInput(obj);
     }
-  }, [obj]);
+  }, [obj, user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,7 +36,7 @@ function TeamForm({ obj }) {
       updateTeam(formInput)
         .then(() => router.push(`/team/${obj.firebaseKey}`));
     } else {
-      const payload = { ...formInput, user: user.uid };
+      const payload = { ...formInput, uid: user.uid };
       createTeam(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateTeam(patchPayload).then(() => {
@@ -84,10 +83,9 @@ TeamForm.propTypes = {
     team_name: PropTypes.string,
     isPublic: PropTypes.bool,
     firebaseKey: PropTypes.string,
-    user: PropTypes.string,
   }),
 };
 
-TeamForm.defaultProps = { obj: {} };
+TeamForm.defaultProps = { obj: initialState };
 
 export default TeamForm;
